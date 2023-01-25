@@ -13,4 +13,5 @@ services:
   web2:
     image: containous/whoami
     labels:
-      -  traefik.http.routers.web2.rule=Host(`web2.pirouter.local`) || ( Host(`pirouter.local`) && PathPrefix(`/web2`) )
+      - traefik.http.routers.web2.rule=Host(`web2.pirouter.local`) || ( Host(`pirouter.local`) && PathPrefix(`/web2`) )
+        #- traefik.http.services.web2.loadBalancer.stickiness
