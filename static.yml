@@ -8,14 +8,14 @@ providers:
   docker:
     watch: true
   file:
-    directory: /ezc/traefik/dynamic
+    directory: /etc/traefik/dynamic
     watch: true
     filename: dynamic.yaml
 
-certificateResolvers:
+certificatesResolvers:
   default:
     acme:
-      email: admin@example.org
+      email: admin@bembel.dev
       storage: /etc/traefik/acme/acme.json
       httpChallenge:
         entryPoint: web
