@@ -10,6 +10,9 @@ services:
       - '8080:8080'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:rw
+      - ./static.yml:/etc/traefik/traefik.html
+      - ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
+      - ./acme.json:/etc/traefik/acme/acme.json
   web2:
     image: containous/whoami
     labels:
