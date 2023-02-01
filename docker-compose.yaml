@@ -6,11 +6,11 @@ services:
     restart: always
     volumes:
       - ./mongo_data:/data
-      
+
   api-server:
     image: bhhshop-api:latest
     labels:
-      - traefik.http.routers.api-server.rule=Host(`bhhshop.bembel.dev`)
+      - traefik.http.routers.api-server.rule=Host(`api.bhhshop.bembel.dev`)
       - "traefik.http.routers.api-server.tls.certResolver=default"
       - "traefik.http.routers.api-server.tls=true"
 
@@ -27,9 +27,3 @@ services:
       - ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
       - ./acme.json:/etc/traefik/acme/acme.json
 
-  web2:
-    image: containous/whoami
-    labels:
-      - traefik.http.routers.web2.rule=Host(`api.bhhshop.bembel.dev`) || ( Host(`bhhshop.bembel.dev`) && PathPrefix(`/web2`) )
-      - "traefik.http.routers.web2.tls.certResolver=default"
-      - "traefik.http.routers.web2.tls=true"
