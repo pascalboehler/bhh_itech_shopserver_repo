@@ -1,6 +1,13 @@
 version: '3.7'
 
 services:
+  db:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=apiuser
+      - MONGO_INITDB_ROOT_PASSWORD=Start1234!
+      - MONGO_INITDB_DATABASE=bhhshop
   api-server:
     image: bhhshop-api:latest
     labels:
