@@ -1,6 +1,13 @@
 version: '3.7'
 
 services:
+  api-server:
+    image: bhhshop-api:latest
+    labels:
+      - traefik.http.routers.api-server.rule=Host(`bhhshop.bembel.dev`)
+      - "traefik.http.routers.api-server.tls.certResolver=default"
+      - "traefik.http.routers.api-server.tls=true"
+
   traefik:
     image: traefik:v2.9
     command: --providers.docker --api.insecure=true
@@ -13,6 +20,7 @@ services:
       - ./static.yml:/etc/traefik/traefik.yml
       - ./dynamic.yml:/etc/traefik/dynamic/dynamic.yml
       - ./acme.json:/etc/traefik/acme/acme.json
+
   web2:
     image: containous/whoami
     labels:
